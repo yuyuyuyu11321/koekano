@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャスト一覧 - こえかの</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="cast-list">
+        <h1>キャスト一覧</h1>
+        <div class="cast-grid">
+            <div class="cast-item">
+                <img src="a.jpeg" alt="キャスト1">
+                <h2>キャスト1</h2>
+                <p>プロフィールや自己紹介が入ります。</p>
+            </div>
+            <div class="cast-item">
+                <img src="b.jpeg" alt="キャスト2">
+                <h2>キャスト2</h2>
+                <p>プロフィールや自己紹介が入ります。</p>
+            </div>
+            <div class="cast-item">
+                <img src="c.jpg" alt="キャスト3">
+                <h2>キャスト3</h2>
+                <p>プロフィールや自己紹介が入ります。</p>
+            </div>
+            <!-- 追加のキャスト項目をここに記載します -->
+        </div>
+    </section>
+
+    <footer>
+        <p><a href="contact.html"></a>お問い合わせ</a></p>
+        <p>
+            <a href="privacypolicy.html">プライバシーポリシー</a> | 
+
+            <a href="commercial-transaction.html">特定商取引法に基づく表示</a> | 
+            <a href="terms-of-service.html">会員利用規約</a> | 
+            <a href="faq.html">よくある質問</a> | 
+            <a href="job.html">キャスト採用</a>
+        </p>
+    </footer>
+
+    <script>
+        // 共通ヘッダーとポップアップを読み込む
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+
+                // ログインポップアップの表示制御
+                var loginBtn = document.getElementById('login-btn');
+                var loginPopup = document.getElementById('login-popup');
+                var closeBtn = document.getElementsByClassName('close-btn')[0];
+
+                loginBtn.onclick = function() {
+                    loginPopup.style.display = "block";
+                }
+
+                closeBtn.onclick = function() {
+                    loginPopup.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == loginPopup) {
+                        loginPopup.style.display = "none";
+                    }
+                }
+                
+                // ログイン状態に応じた表示の切り替え
+                var loggedIn = false; // 実際のログイン状態に応じて変更
+                if (loggedIn) {
+                    document.getElementById('mypage-link').style.display = 'block';
+                    document.getElementById('register-link').style.display = 'none';
+                    document.getElementById('login-link').style.display = 'none';
+                } else {
+                    document.getElementById('mypage-link').style.display = 'none';
+                    document.getElementById('register-link').style.display = 'block';
+                    document.getElementById('login-link').style.display = 'block';
+                }
+            });
+    </script>
+</body>
+</html>

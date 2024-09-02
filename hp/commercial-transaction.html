@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特定商取引法に基づく表示 - こえかの！</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="commercial-transaction">
+        <h1>特定商取引法に基づく表示</h1>
+
+        <h2>事業者名</h2>
+        <p>こえかの！</p>
+
+        <h2>お問い合わせ</h2>
+        <p>メール: info@koekano.com</p>
+
+        <h2>販売価格</h2>
+        <p>各サービスごとに表示される価格に基づきます。</p>
+
+        <h2>商品代金以外の必要料金</h2>
+        <p>インターネット接続料金および通信費は、お客様の負担となります。</p>
+
+        <h2>代金の支払い時期と方法</h2>
+        <p>クレジットカード決済、銀行振込、その他の決済方法により支払いいただけます。支払い時期は各サービスの指定に基づきます。</p>
+
+        <h2>商品の引き渡し時期</h2>
+        <p>決済完了後、即時にご利用いただけます。</p>
+
+        <h2>返品・キャンセルについて</h2>
+        <p>デジタルコンテンツの特性上、購入後の返品・キャンセルはお受けしておりません。</p>
+
+        <h2>動作環境</h2>
+        <p>サービスの利用には、スマートフォンまたはマイク接続されたPCが必要です。</p>
+
+    </section>
+
+    <footer>
+        <p><a href="contact.html">お問い合わせ</a></p>
+        <p>
+            <a href="privacypolicy.html">プライバシーポリシー</a> | 
+            <a href="terms-of-service.html">会員利用規約</a> | 
+            <a href="commercial-transaction.html">特定商取引法に基づく表示</a> | 
+            <a href="faq.html">よくある質問</a> | 
+            <a href="job.html">キャスト採用</a>
+        </p>
+    </footer>
+
+    <script>
+        // 共通ヘッダーとポップアップを読み込む
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+
+                // ログインポップアップの表示制御
+                var loginBtn = document.getElementById('login-btn');
+                var loginPopup = document.getElementById('login-popup');
+                var closeBtn = document.getElementsByClassName('close-btn')[0];
+
+                loginBtn.onclick = function() {
+                    loginPopup.style.display = "block";
+                }
+
+                closeBtn.onclick = function() {
+                    loginPopup.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == loginPopup) {
+                        loginPopup.style.display = "none";
+                    }
+                }
+                // ログイン状態に応じた表示の切り替え
+                var loggedIn = false; // 実際のログイン状態に応じて変更
+                if (loggedIn) {
+                    document.getElementById('mypage-link').style.display = 'block';
+                    document.getElementById('register-link').style.display = 'none';
+                    document.getElementById('login-link').style.display = 'none';
+                } else {
+                    document.getElementById('mypage-link').style.display = 'none';
+                    document.getElementById('register-link').style.display = 'block';
+                    document.getElementById('login-link').style.display = 'block';
+                }                
+            });
+    </script>
+</body>
+</html>

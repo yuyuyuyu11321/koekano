@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会員登録 - こえかの</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="registration-form">
+        <h1>会員登録</h1>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="username">ユーザー名:</label>
+                <input type="text" id="username" name="username" placeholder="ユーザー名を入力" required>
+            </div>
+            <div class="form-group">
+                <label for="email">メールアドレス:</label>
+                <input type="email" id="email" name="email" placeholder="メールアドレスを入力" required>
+            </div>
+            <div class="form-group">
+                <label for="password">パスワード:</label>
+                <input type="password" id="password" name="password" placeholder="パスワードを入力" required>
+            </div>
+            <button type="submit">登録する</button>
+        </form>     
+    </section>
+
+    <footer>
+        <p><a href="contact.html">お問い合わせ</a></p>
+        <p>
+            <a href="privacypolicy.html">プライバシーポリシー</a> | 
+
+            <a href="commercial-transaction.html">特定商取引法に基づく表示</a> | 
+            <a href="terms-of-service.html">会員利用規約</a> | 
+            <a href="faq.html">よくある質問</a> | 
+            <a href="job.html">キャスト採用</a>
+        </p>
+    </footer>
+
+
+    <script>
+        // 共通ヘッダーとポップアップを読み込む
+        fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+            
+            // ログインポップアップの表示制御
+            var loginBtn = document.getElementById('login-btn');
+            var loginPopup = document.getElementById('login-popup');
+            var closeBtn = document.getElementsByClassName('close-btn')[0];
+            
+            loginBtn.onclick = function() {
+                loginPopup.style.display = "block";
+            }
+            
+            closeBtn.onclick = function() {
+                loginPopup.style.display = "none";
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == loginPopup) {
+                    loginPopup.style.display = "none";
+                }
+            }
+            // ログイン状態に応じた表示の切り替え
+            var loggedIn = false; // 実際のログイン状態に応じて変更
+            if (loggedIn) {
+                document.getElementById('mypage-link').style.display = 'block';
+                document.getElementById('register-link').style.display = 'none';
+                document.getElementById('login-link').style.display = 'none';
+            } else {
+                document.getElementById('mypage-link').style.display = 'none';
+                document.getElementById('register-link').style.display = 'block';
+                document.getElementById('login-link').style.display = 'block';
+            }
+        });
+        </script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('registrationForm').onsubmit = function(event) {
+                event.preventDefault(); // フォームのデフォルト動作をキャンセル
+        
+                const usernameValue = document.getElementById('username').value.trim();
+                const emailValue = document.getElementById('email').value.trim();
+                const passwordValue = document.getElementById('password').value.trim();
+        
+                console.log('Username:', usernameValue);
+                console.log('Email:', emailValue);
+                console.log('Password:', passwordValue);
+        
+                if (!usernameValue || !emailValue || !passwordValue) {
+                    alert('すべてのフィールドに入力してください');
+                    return;
+                }
+        
+                const formData = {
+                    username: usernameValue,
+                    email: emailValue,
+                    password: passwordValue
+                };
+        
+                fetch('http://localhost:3000/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('会員登録が完了しました');
+                    } else {
+                        alert('エラーが発生しました: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('エラーが発生しました');
+                });
+            }
+        });
+        </script>
+</body>
+</html>

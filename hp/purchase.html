@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポイント購入 - こえかの</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="purchase-info">
+        <h1>ポイント購入</h1>
+        <div id="bank-info" style="display:none;">
+            <h2>銀行振込先情報</h2>
+            <p>振込先: ○○銀行 △△支店</p>
+            <p>口座番号: 1234567</p>
+            <p>名義: カ)ディエム</p>
+        </div>
+    </section>
+
+    <footer>
+        <p><a href="contact.html">お問い合わせ</a></p>
+        <p>
+            <a href="privacypolicy.html">プライバシーポリシー</a> | 
+
+            <a href="commercial-transaction.html">特定商取引法に基づく表示</a> | 
+            <a href="terms-of-service.html">会員利用規約</a> | 
+            <a href="faq.html">よくある質問</a> | 
+            <a href="job.html">キャスト採用</a>
+        </p>
+    </footer>
+
+    <script>
+        // 共通ヘッダーとポップアップを読み込む
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+
+                // ログインポップアップの表示制御
+                var loginBtn = document.getElementById('login-btn');
+                var loginPopup = document.getElementById('login-popup');
+                var closeBtn = document.getElementsByClassName('close-btn')[0];
+
+                loginBtn.onclick = function() {
+                    loginPopup.style.display = "block";
+                }
+
+                closeBtn.onclick = function() {
+                    loginPopup.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == loginPopup) {
+                        loginPopup.style.display = "none";
+                    }
+                }
+                // ログイン状態に応じた表示の切り替え
+                var loggedIn = false; // 実際のログイン状態に応じて変更
+                if (loggedIn) {
+                    document.getElementById('mypage-link').style.display = 'block';
+                    document.getElementById('register-link').style.display = 'none';
+                    document.getElementById('login-link').style.display = 'none';
+                } else {
+                    document.getElementById('mypage-link').style.display = 'none';
+                    document.getElementById('register-link').style.display = 'block';
+                    document.getElementById('login-link').style.display = 'block';
+                }
+            });
+
+        // ログイン状態チェック (仮のコード)
+        var loggedIn = false; // ここを実際のログイン状態で設定する
+
+        if(loggedIn) {
+            document.getElementById("bank-info").style.display = "block";
+        } else {
+            alert("このページを表示するにはログインが必要です。");
+            document.getElementById("login-btn").click();
+        }
+    </script>
+</body>
+</html>

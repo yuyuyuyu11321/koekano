@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>こえかの</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="main-visual">
+        <h1>お好きなプランと日時を選んで予約しよう</h1>
+    </section>
+
+    <section class="content">
+        <div class="left-column">
+            <h2>予約の流れ</h2>
+            <p>簡単3ステップで予約完了！</p>
+            <ol>
+                <li>会員登録</li>
+                <li>日時とプランを選択</li>
+                <li>ポイントを消費して予約</li>
+            </ol>
+
+            <h2>おすすめプラン</h2>
+            <div class="plans">
+                <div class="plan">
+                    <h3>プレイコース40分</h3>
+                    <p>忘れられないひと時をお届けします☺</p>
+                </div>
+                <div class="plan">
+                    <h3>ゲーム、トークのみコース</h3>
+                    <p>お話だけでも可能です！<br>※ゲームはキャストにより対応可</p>
+                </div>
+            </div>
+        </div>
+        <aside class="right-column">
+            <div class="points">
+                <h2>ポイント購入</h2>
+                <button>購入する</button>
+            </div>
+
+            <div class="campaign">
+                <h2>キャンペーン情報</h2>
+                <p>～9/11まで！<br>今だけポイント2倍！</p>
+            </div>
+        </aside>
+    </section>
+
+    <footer>
+        <p><a href="contact.html">お問い合わせ</a></p>
+        <p>
+            <a href="privacypolicy.html">プライバシーポリシー</a> | 
+
+            <a href="commercial-transaction.html">特定商取引法に基づく表示</a> | 
+            <a href="terms-of-service.html">会員利用規約</a> | 
+            <a href="faq.html">よくある質問</a> | 
+                        <a href="job.html">キャスト採用</a>
+        </p>
+    </footer>
+
+    <script>
+        // 共通ヘッダーとポップアップを読み込む
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+
+                // ログインポップアップの表示制御
+                var loginBtn = document.getElementById('login-btn');
+                var loginPopup = document.getElementById('login-popup');
+                var closeBtn = document.getElementsByClassName('close-btn')[0];
+
+                loginBtn.onclick = function() {
+                    loginPopup.style.display = "block";
+                }
+
+                closeBtn.onclick = function() {
+                    loginPopup.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == loginPopup) {
+                        loginPopup.style.display = "none";
+                    }
+                }
+
+                // ログイン状態に応じた表示の切り替え
+                var loggedIn = false; // 実際のログイン状態に応じて変更
+                if (loggedIn) {
+                    document.getElementById('mypage-link').style.display = 'block';
+                    document.getElementById('register-link').style.display = 'none';
+                    document.getElementById('login-link').style.display = 'none';
+                } else {
+                    document.getElementById('mypage-link').style.display = 'none';
+                    document.getElementById('register-link').style.display = 'block';
+                    document.getElementById('login-link').style.display = 'block';
+                }
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.logo {
+    font-size: 1.5em;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.main-visual {
+    background-image: url('https://via.placeholder.com/1200x400');
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.main-visual h1 {
+    font-size: 2.5em;
+}
+
+.content {
+    display: flex;
+    padding: 20px;
+}
+
+.left-column {
+    flex: 3;
+    margin-right: 20px;
+}
+
+.right-column {
+    flex: 1;
+    background-color: #e0e0e0;
+    padding: 20px;
+}
+
+.plans {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.plan {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: calc(50% - 10px);
+    box-sizing: border-box;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* 既存のCSSに追加 */
+.cast-list {
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.cast-list h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.cast-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.cast-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cast-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.cast-item h2 {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.cast-item p {
+    font-size: 0.9em;
+    color: #555;
+}
+/* ポップアップ用CSS */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* ベーススタイルのリセット */
+form {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+label {
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+}
+
+input {
+    margin: 0;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.plan-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.plan-list h1 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.plan-category {
+    margin-bottom: 30px;
+}
+
+.plan-category h2 {
+    font-size: 1.5em;
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-left: 5px solid #f380e9;
+    border-right: 5px solid #f380e9;
+    margin-bottom: 10px;
+    text-align: center; 
+}
+
+.plan-category ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.plan-category ul li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 1.2em;
+    text-align: center;  /* ここで中央寄せにしています */
+}
+.faq {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.faq-item {
+    margin-bottom: 30px;
+}
+
+.faq-item h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.faq-item p, .faq-item ul {
+    margin-left: 20px; /* 左側に余白を追加 */
+    line-height: 1.6;
+}
+
+.faq-item ul {
+    list-style-type: disc;
+}
+.faq-item h2 {
+    cursor: pointer;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 1.2em; /* ここで文字サイズを小さく設定 */
+}
+.recruitment {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.recruitment-details {
+    margin-left: 20px; /* 左側に余白を追加 */
+}
+
+.recruitment-details h2 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.recruitment-details p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.recruitment-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 2px;
+    border-radius: 5px; /* 角を少し丸める */
+    background-color: #f9f9f9; /* 背景色を追加 */
+}
+.commercial-transaction {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.commercial-transaction-details {
+    margin-left: 20px; /* 左側に余白を追加 */
+}
+
+.commercial-transaction-details h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.commercial-transaction-details p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+.commercial-transaction-details h1 {
+    font-size: 1.4em;
+    margin-bottom: 1px;
+}
+
+.terms-of-service {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.terms-of-service-details {
+    margin-left: 20px; /* 左側に余白を追加 */
+}
+
+.terms-of-service-details h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.terms-of-service-details p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+.terms-of-service-details h1 {
+    font-size: 1.4em;
+    margin-bottom: 1px;
+}
+
+.privacy-policy {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.privacy-policy-details {
+    margin-left: 20px; /* 左側に余白を追加 */
+}
+
+.privacy-policy-details h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.privacy-policy-details p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+.privacy-policy-details h1 {
+    font-size: 1.4em;
+    margin-bottom: 1px;
+}
+.contact-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    height: 150px; /* 高さを大きく設定 */
+    resize: vertical; /* ユーザーがサイズを調整できるように */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

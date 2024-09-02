@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイページ - こえかの</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="mypage-info">
+        <h1>マイページ</h1>
+        <div id="user-info" style="display:none;">
+            <p>ニックネーム: <span id="nickname">User123</span></p>
+            <p>銀行振込時の名前: <span id="bankname">ユーザー名義</span></p>
+            <p>Discordの名前: <span id="discordname">ユーザー名義</span></p>
+
+            <!-- ユーザーが名義を設定できるフォーム -->
+            <h2>銀行振込時の名前</h2>
+            <form id="banknameForm">
+                <label for="banknameInput">銀行振込時の名前:</label>
+                <input type="text" id="banknameInput" name="bankname" placeholder="銀行振込時の名前を入力" required>
+                <button type="submit">保存</button>
+            </form>
+            <h2>Discordの名前</h2>
+            <form id="discordnameForm">
+                <label for="banknameInput">Discordの名前:</label>
+                <input type="text" id="banknameInput" name="bankname" placeholder="Discordの名前を入力" required>
+                <button type="submit">保存</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p><a href="contact.html">お問い合わせ</a></p>
+        <p>
+            <a href="privacypolicy.html">プライバシーポリシー</a> | 
+
+            <a href="commercial-transaction.html">特定商取引法に基づく表示</a> | 
+            <a href="terms-of-service.html">会員利用規約</a> | 
+            <a href="faq.html">よくある質問</a> | 
+            <a href="job.html">キャスト採用</a>
+        </p>
+    </footer>
+
+    <script>
+        // 共通ヘッダーとポップアップを読み込む
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+
+                // ログインポップアップの表示制御
+                var loginBtn = document.getElementById('login-btn');
+                var loginPopup = document.getElementById('login-popup');
+                var closeBtn = document.getElementsByClassName('close-btn')[0];
+
+                loginBtn.onclick = function() {
+                    loginPopup.style.display = "block";
+                }
+
+                closeBtn.onclick = function() {
+                    loginPopup.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == loginPopup) {
+                        loginPopup.style.display = "none";
+                    }
+                }
+                // ログイン状態に応じた表示の切り替え
+                var loggedIn = false; // 実際のログイン状態に応じて変更
+                if (loggedIn) {
+                    document.getElementById('mypage-link').style.display = 'block';
+                    document.getElementById('register-link').style.display = 'none';
+                    document.getElementById('login-link').style.display = 'none';
+                } else {
+                    document.getElementById('mypage-link').style.display = 'none';
+                    document.getElementById('register-link').style.display = 'block';
+                    document.getElementById('login-link').style.display = 'block';
+                }                
+            });
+
+        // ログイン状態チェック (仮のコード)
+        var loggedIn = false; // ここを実際のログイン状態で設定する
+
+        if(loggedIn) {
+            document.getElementById("user-info").style.display = "block";
+        } else {
+            alert("このページを表示するにはログインが必要です。");
+            document.getElementById("login-btn").click();
+        }
+
+        // 名義の保存機能
+        document.getElementById('nameForm').onsubmit = function(event) {
+            event.preventDefault(); // フォームのデフォルト動作をキャンセル
+            var bankname = document.getElementById('banknameInput').value;
+            document.getElementById('bankname').textContent = bankname;
+
+            // ここで名義を保存する処理を追加 (例えば、サーバーに送信したり、ローカルストレージに保存したりする)
+            alert('名義が保存されました: ' + bankname);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>予約 - こえかの！</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .schedule-table th {
+            background-color: #f4f4f4;
+        }
+
+        .time-column {
+            width: 100px;
+        }
+
+        .cast-column {
+            width: auto;
+        }
+
+        .available {
+            background-color: #dff0d8;
+            cursor: pointer;
+        }
+
+        .unavailable {
+            background-color: #f8d7da;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="reservation">
+        <h1>予約ページ</h1>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th class="time-column">時間</th>
+                    <th class="cast-column">キャストA</th>
+                    <th class="cast-column">キャストB</th>
+                    <th class="cast-column">キャストC</th>
+                    <th class="cast-column">キャストD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time-column">10:00</td>
+                    <td class="available">予約可能</td>
+                    <td class="unavailable">予約不可</td>
+                    <td class="available">予約可能</td>
+                    <td class="available">予約可能</td>
+                </tr>
+                <tr>
+                    <td class="time-column">11:00</td>
+                    <td class="unavailable">予約不可</td>
+                    <td class="available">予約可能</td>
+                    <td class="available">予約可能</td>
+                    <td class="unavailable">予約不可</td>
+                </tr>
+                <tr>
+                    <td class="time-column">12:00</td>
+                    <td class="available">予約可能</td>
+                    <td class="available">予約可能</td>
+                    <td class="unavailable">予約不可</td>
+                    <td class="available">予約可能</td>
+                </tr>
+                <!-- 他の時間も追加可能 -->
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p><a href="contact.html">お問い合わせ</a></p>
+        <p>
+            <a href="privacypolicy.html">プライバシーポリシー</a> | 
+            <a href="terms-of-service.html">会員利用規約</a> | 
+            <a href="commercial-transaction.html">特定商取引法に基づく表示</a> | 
+            <a href="faq.html">よくある質問</a> | 
+            <a href="cast-recruitment.html">キャスト採用情報</a>
+        </p>
+    </footer>
+
+    <script>
+        // 共通ヘッダーとポップアップを読み込む
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+
+                // ログインポップアップの表示制御
+                var loginBtn = document.getElementById('login-btn');
+                var loginPopup = document.getElementById('login-popup');
+                var closeBtn = document.getElementsByClassName('close-btn')[0];
+
+                loginBtn.onclick = function() {
+                    loginPopup.style.display = "block";
+                }
+
+                closeBtn.onclick = function() {
+                    loginPopup.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == loginPopup) {
+                        loginPopup.style.display = "none";
+                    }
+                }
+                // ログイン状態に応じた表示の切り替え
+                var loggedIn = false; // 実際のログイン状態に応じて変更
+                if (loggedIn) {
+                    document.getElementById('mypage-link').style.display = 'block';
+                    document.getElementById('register-link').style.display = 'none';
+                    document.getElementById('login-link').style.display = 'none';
+                } else {
+                    document.getElementById('mypage-link').style.display = 'none';
+                    document.getElementById('register-link').style.display = 'block';
+                    document.getElementById('login-link').style.display = 'block';
+                }                    
+            });
+
+        // 予約可能なセルをクリックで予約する機能（仮実装）
+        document.querySelectorAll('.available').forEach(function(cell) {
+            cell.addEventListener('click', function() {
+                alert('予約が完了しました');
+            });
+        });
+    </script>
+</body>
+</html>

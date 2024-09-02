@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャスト採用情報 - こえかの！</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="recruitment">
+        <h1>キャスト採用情報</h1>
+        <div class="recruitment-details">
+            <div class="recruitment-item">
+                <h2>業務内容</h2>
+                <p>　こえかの！では、業務委託契約に基づき、キャストとして活動していただける方を募集しています。</p>
+
+                <h2>報酬</h2>
+                <p>　報酬は予約単価の40%です。お客様からの予約に応じた報酬が支払われます。</p>
+    
+                <h2>業務時間</h2>
+                <p>　業務時間は1時間以上から可能です。柔軟な働き方が可能ですので、自分のペースでお仕事をしていただけます。</p>
+    
+                <h2>勤務形態</h2>
+                <p>　在宅での勤務が可能です。ご自宅から快適に業務を行っていただけます。</p>
+    
+                <h2>必要な機材</h2>
+                <p>　スマートフォンまたはPCのどちらかが必須です。通話やメッセージのやり取りに必要となります。</p>
+            </div>
+        </div>
+    </section>
+    
+
+    <footer>
+        <p><a href="contact.html">お問い合わせ</a></p>
+        <p>
+            <a href="privacypolicy.html">プライバシーポリシー</a> | 
+            <a href="terms-of-service.html">会員利用規約</a> | 
+            <a href="commercial-transaction.html">特定商取引法に基づく表示</a> | 
+            <a href="faq.html">よくある質問</a> | 
+            <a href="job.html">キャスト採用</a> | 
+            <a href="cast-recruitment.html">キャスト採用情報</a>
+        </p>
+    </footer>
+
+    <script>
+        // 共通ヘッダーとポップアップを読み込む
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+
+                // ログインポップアップの表示制御
+                var loginBtn = document.getElementById('login-btn');
+                var loginPopup = document.getElementById('login-popup');
+                var closeBtn = document.getElementsByClassName('close-btn')[0];
+
+                loginBtn.onclick = function() {
+                    loginPopup.style.display = "block";
+                }
+
+                closeBtn.onclick = function() {
+                    loginPopup.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == loginPopup) {
+                        loginPopup.style.display = "none";
+                    }
+                }
+                // ログイン状態に応じた表示の切り替え
+                var loggedIn = false; // 実際のログイン状態に応じて変更
+                if (loggedIn) {
+                    document.getElementById('mypage-link').style.display = 'block';
+                    document.getElementById('register-link').style.display = 'none';
+                    document.getElementById('login-link').style.display = 'none';
+                } else {
+                    document.getElementById('mypage-link').style.display = 'none';
+                    document.getElementById('register-link').style.display = 'block';
+                    document.getElementById('login-link').style.display = 'block';
+                }
+            });
+    </script>
+</body>
+</html>

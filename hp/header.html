@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html">こえかの！</a></div>
+        <nav>
+            <ul>
+                <li><a href="cast.html">キャスト一覧</a></li>
+                <li><a href="schedule.html">出勤表</a></li>
+                <li><a href="plans.html">プラン</a></li>
+                <li><a href="purchase.html">ポイント購入</a></li>
+                <li id="mypage-link"><a href="mypage.html">マイページ</a></li>
+                <li id="login-link"><a href="#" id="login-btn">ログイン</a></li>
+                <li id="register-link"><a href="register.html">会員登録</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ログインポップアップをここに追加 -->
+    <div id="login-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <h2>ログイン</h2>
+            <form method="POST">  <!-- action属性は指定しない -->
+                <label for="login-username">ユーザー名</label>
+                <input type="text" id="login-username" name="username" required>
+            
+                <label for="login-password">パスワード</label>
+                <input type="password" id="login-password" name="password" required>
+            
+                <button type="submit">ログイン</button>
+            </form>
+            <a href="forgot-password.html" style="display: block; margin-top: 10px; text-align: left;">パスワードを忘れた方</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('#login-popup form').onsubmit = function(event) {
+                event.preventDefault();  // デフォルトのフォーム送信をキャンセルします
+                console.log('Form submitted');  // ここでフォームが送信されたか確認
+
+                const username = document.getElementById('login-username').value.trim();
+                const password = document.getElementById('login-password').value.trim();
+
+                if (!username || !password) {
+                    alert('ユーザー名とパスワードを入力してください');
+                    return;
+                }
+
+                const loginData = {
+                    username: username,
+                    password: password
+                };
+
+                fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(loginData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('ログインに成功しました');
+                        document.getElementById('login-popup').style.display = 'none';
+                    } else {
+                        alert('ログインに失敗しました: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('エラーが発生しました');
+                });
+            };
+        });
+
+    </script>
+</body>
+</html>

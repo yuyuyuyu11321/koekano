@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライバシーポリシー - こえかの！</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="privacy-policy">
+        <h1>プライバシーポリシー</h1>
+
+        <p>「こえかの！」（以下、「当社」といいます。）は、お客様の個人情報を適切に保護することを重要な責務と認識し、以下の通り個人情報保護方針を定め、その履行に努めてまいります。</p>
+
+        <h2>1. 個人情報の取得について</h2>
+        <p>当社は、適法かつ公正な手段によって、個人情報を取得いたします。</p>
+
+        <h2>2. 個人情報の利用について</h2>
+        <p>当社は、取得した個人情報を以下の目的のために利用いたします。</p>
+        <ul>
+            <li>サービスの提供および運営</li>
+            <li>お客様からのお問い合わせに対応するため</li>
+            <li>新しいサービスの案内やその他の情報を提供するため</li>
+            <li>サービスの改善や新しいサービスを開発するため</li>
+            <li>不正行為の防止および調査のため</li>
+        </ul>
+
+        <h2>3. 個人情報の第三者提供について</h2>
+        <p>当社は、法令に基づく場合を除き、お客様の同意を得ることなく第三者に個人情報を提供いたしません。</p>
+
+        <h2>4. 個人情報の安全管理について</h2>
+        <p>当社は、個人情報の漏洩、紛失、毀損の防止その他個人情報の安全管理のために適切な措置を講じます。</p>
+
+        <h2>5. 個人情報の開示・訂正・利用停止について</h2>
+        <p>当社は、お客様ご本人から自己の個人情報についての開示、訂正、利用停止の請求があった場合、適切に対応いたします。</p>
+
+        <h2>6. プライバシーポリシーの変更について</h2>
+        <p>当社は、法令の変更や事業内容の変更に伴い、プライバシーポリシーを改定することがあります。改定されたプライバシーポリシーは、当ウェブサイトに掲載することにより効力を生じます。</p>
+
+        <h2>7. 苦情・相談窓口</h2>
+        <p>プライバシーポリシーに関するお問い合わせは、以下の連絡先までお願いいたします。</p>
+        <p><strong>こえかの！ 苦情相談先:</strong> info@koekano.com</p>
+
+    </section>
+
+    <footer>
+        <p><a href="contact.html">お問い合わせ</a></p>
+        <p>
+            <a href="privacypolicy.html">プライバシーポリシー</a> | 
+
+            <a href="commercial-transaction.html">特定商取引法に基づく表示</a> | 
+            <a href="terms-of-service.html">会員利用規約</a> | 
+            <a href="faq.html">よくある質問</a> | 
+            <a href="job.html">キャスト採用</a>
+        </p>
+    </footer>
+
+    <script>
+        // 共通ヘッダーとポップアップを読み込む
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+
+                // ログインポップアップの表示制御
+                var loginBtn = document.getElementById('login-btn');
+                var loginPopup = document.getElementById('login-popup');
+                var closeBtn = document.getElementsByClassName('close-btn')[0];
+
+                loginBtn.onclick = function() {
+                    loginPopup.style.display = "block";
+                }
+
+                closeBtn.onclick = function() {
+                    loginPopup.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == loginPopup) {
+                        loginPopup.style.display = "none";
+                    }
+                }
+                // ログイン状態に応じた表示の切り替え
+                var loggedIn = false; // 実際のログイン状態に応じて変更
+                if (loggedIn) {
+                    document.getElementById('mypage-link').style.display = 'block';
+                    document.getElementById('register-link').style.display = 'none';
+                    document.getElementById('login-link').style.display = 'none';
+                } else {
+                    document.getElementById('mypage-link').style.display = 'none';
+                    document.getElementById('register-link').style.display = 'block';
+                    document.getElementById('login-link').style.display = 'block';
+                }                
+            });
+    </script>
+</body>
+</html>

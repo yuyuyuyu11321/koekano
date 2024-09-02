@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よくある質問 - こえかの！</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .faq-item h2 {
+            cursor: pointer;
+            background-color: #f9f9f9;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 1px;
+        }
+
+        .faq-item .answer {
+            display: none;
+            margin-left: 20px;
+            padding: 10px 0;
+            border-left: 3px solid #f380e9;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="faq">
+        <h1>よくある質問</h1>
+
+        <div class="faq-item">
+            <h2>ポイント購入方法</h2>
+            <div class="answer">
+                <p>ポイント購入は <a href="purchase.html">こちら</a> より手続きをお願いいたします。</p>
+                <p style="color: red;">銀行振込を利用する際はマイページの振込名義を必ず設定してください。</p>
+                <p style="color: red;">口座名義を別の名前を設定するときは、振込時のお名前も同様に変更してください。</p>
+                <p>着金確認次第反映させていただきます。お使いの口座によって着金スケジュールが変動する可能性がございますので、各銀行サイトにてご確認ください。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h2>パスワードを忘れた</h2>
+            <div class="answer">
+                <p>こちら <a href="forgot-password.html">パスワードリセット</a> よりお手続きください。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h2>動作環境について</h2>
+            <div class="answer">
+                <p>なるべく通信環境がよい場所でスマートフォンまたはマイク接続されたPCがあればお使いいただけます。通話アプリ「Discord」を使用しますので、登録やインストールを予めお願いいたします。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h2>予約を変更・キャンセルしたい</h2>
+            <div class="answer">
+                <p>当日中の時間変更については１時間前であれば可能です。日程変更については予約日時３時間前まで可能です。</p>
+                <p>キャンセルについては下記表を参考ください</p>
+                <ul>
+                    <li>３日前まで: ポイント100%返却</li>
+                    <li>１日前まで: ポイント50%返却</li>
+                    <li>１時間前まで: ポイント25%返却</li>
+                    <li>上記以降: ポイント返却無し</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h2>当日、時間に間に合わない</h2>
+            <div class="answer">
+                <p>前もって予約時間を変更頂くかDiscordまたは当HPまでご連絡ください。予約時間から20分経過した時点で連絡がない場合はキャンセルとさせていただきます。その場合のポイント返還は致しかねますのでご了承ください。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h2>不満がありポイントを返還してほしい</h2>
+            <div class="answer">
+                <p>ご満足いただけず大変申し訳ございません。問い合わせか運営Discordにご連絡いただけますと幸いです。事実確認を行った後、返還判断を致します。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h2>通話中に通信が途絶えてしまった</h2>
+            <div class="answer">
+                <p>キャスト側の通信エラーが起こった場合、復帰までの時間はコース分数にカウントしません。復帰不可の場合は、大変申し訳ございませんがポイントを全額返還対応とさせていただきます。</p>
+                <p>お客様都合の場合、復帰までの時間もコース分数にカウントしますので、なるべく通信環境がよい場所でご利用いただけますと幸いです。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h2>ビデオ通話は可能か</h2>
+            <div class="answer">
+                <p>キャストが行うことはありません。お客様側がビデオを映すことは可能です。</p>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <p><a href="contact.html">お問い合わせ</a></p>
+        <p>
+            <a href="privacypolicy.html">プライバシーポリシー</a> | 
+            <a href="terms-of-service.html">会員利用規約</a> | 
+            <a href="commercial-transaction.html">特定商取引法に基づく表示</a> | 
+            <a href="faq.html">よくある質問</a> | 
+            <a href="job.html">キャスト採用</a>
+        </p>
+    </footer>
+
+    <script>
+        // 共通ヘッダーとポップアップを読み込む
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+
+                // ログインポップアップの表示制御
+                var loginBtn = document.getElementById('login-btn');
+                var loginPopup = document.getElementById('login-popup');
+                var closeBtn = document.getElementsByClassName('close-btn')[0];
+
+                loginBtn.onclick = function() {
+                    loginPopup.style.display = "block";
+                }
+
+                closeBtn.onclick = function() {
+                    loginPopup.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == loginPopup) {
+                        loginPopup.style.display = "none";
+                    }
+                }
+                // ログイン状態に応じた表示の切り替え
+                var loggedIn = false; // 実際のログイン状態に応じて変更
+                if (loggedIn) {
+                    document.getElementById('mypage-link').style.display = 'block';
+                    document.getElementById('register-link').style.display = 'none';
+                    document.getElementById('login-link').style.display = 'none';
+                } else {
+                    document.getElementById('mypage-link').style.display = 'none';
+                    document.getElementById('register-link').style.display = 'block';
+                    document.getElementById('login-link').style.display = 'block';
+                }                
+
+                // FAQのアコーディオン機能
+                document.querySelectorAll('.faq-item h2').forEach(function (question) {
+                    question.addEventListener('click', function () {
+                        const answer = this.nextElementSibling;
+                        const isVisible = answer.style.display === 'block';
+                        document.querySelectorAll('.faq-item .answer').forEach(function (item) {
+                            item.style.display = 'none';
+                        });
+                        answer.style.display = isVisible ? 'none' : 'block';
+                    });
+                });
+            });
+    </script>
+</body>
+</html>
